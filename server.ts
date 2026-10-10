@@ -1,53 +1,42 @@
+
 import express from 'express';
 import path from 'path';
-import { fileURLToPath } from 'url';
 import dotenv from 'dotenv';
 import { apiRouter } from './server/routes/index.js';
 
 dotenv.config();
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const app = express();
 
-async function startServer() {
-  const app = express();
-  const PORT = parseInt(process.env.PORT || '3000', 10);
-  const isProduction = process.env.NODE_ENV === 'production';
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-  app.use(express.json());
-  app.use(express.urlencoded({ extended: true }));
+app.use('/api/v1', apiRouter);
 
-  // API router mounted under /api/v1
-  app.use('/api/v1', apiRouter);
-
-  // Health check endpoint
-  app.get('/api/health', (req, res) => {
-    res.json({ status: 'healthy', platform: 'Continuum Health', timestamp: new Date().toISOString() });
+app.get('/api/health', (_req, res) => {
+  res.json({
+    status: 'healthy',
+    platform: 'Continuum Health',
+    timestamp: new Date().toISOString(),
   });
+});
 
-  if (!isProduction) {
-    // Development mode: Mount Vite dev server middlewares
-    const { createServer: createViteServer } = await import('vite');
-    const vite = await createViteServer({
-      server: { middlewareMode: true },
-      appType: 'spa',
-    });
-    app.use(vite.middlewares);
-  } else {
-    // Production mode: Serve built static files from dist
-    const distPath = path.resolve(__dirname, 'dist');
-    app.use(express.static(distPath));
-    app.get('*', (req, res) => {
-      res.sendFile(path.resolve(distPath, 'index.html'));
-    });
-  }
+// Vercel serves files in public/ separately.
+// This fallback supports frontend routes.
+app.get('*', (_req, res) => {
+  res.sendFile(path.resolve(process.cwd(), 'public', 'index.html'));
+});
 
+export default app;
+
+// Run the local server outside Vercel.
+if (!process.env.VERCEL) {
+  const PORT = Number(process.env.PORT || 3000);
   app.listen(PORT, '0.0.0.0', () => {
-    console.log(`[Continuum Health] Server running on http://0.0.0.0:${PORT}`);
+    console.log(`Server running on port ${PORT}`);
   });
 }
 
-startServer().catch((err) => {
   console.error('Failed to start server:', err);
   process.exit(1);
 });
