@@ -4,7 +4,7 @@ Unreliable recall: Patients struggle to remember past diagnoses, allergies, curr
 Repeated tests and conflicting treatment: Without prior results, tests are redone, and different doctors may prescribe overlapping or interacting medicines without knowing what the patient already takes.
 Insecure and difficult sharing: Handing records to a new doctor means forwarding files over chat or carrying folders, which is slow and leaves sensitive data exposed. There is no simple, secure way to share the right history with the right doctor, or to stop sharing it afterward.
 Broken continuity of care: When a patient changes doctors, moves cities, or arrives at an emergency room, the new clinician starts from scratch, with no view of earlier diagnoses, treatments, and test results.
-**Google Drive Video Link: https://drive.google.com/file/d/1HFmbPQKKNlcYXHkh2cM2cIhrTsRtHrRt/view?usp=sharing**__
+**Google Drive Video Link: https://drive.google.com/file/d/1U3RAwW2Bk5AmvBQBf4SJVh5rj7hJISn-/view?usp=sharing**__
 # Continuum Health
 
 **A patient-controlled medical-record catalogue and consent-coordination prototype.**
