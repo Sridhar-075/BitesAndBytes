@@ -1,6 +1,15 @@
+Problem Statement: A patient's medical history exists, but it is scattered across providers and rarely available, or safely shareable, at the moment a clinician needs it. Several specific challenges follow from this:
+Scattered records: Prescriptions, lab reports, scans, and discharge summaries sit in different places and formats, with no single timeline of a patient's health.
+Unreliable recall: Patients struggle to remember past diagnoses, allergies, current medications, and doses. Clinicians in a short consultation often work from incomplete or wrong information.
+Repeated tests and conflicting treatment: Without prior results, tests are redone, and different doctors may prescribe overlapping or interacting medicines without knowing what the patient already takes.
+Insecure and difficult sharing: Handing records to a new doctor means forwarding files over chat or carrying folders, which is slow and leaves sensitive data exposed. There is no simple, secure way to share the right history with the right doctor, or to stop sharing it afterward.
+Broken continuity of care: When a patient changes doctors, moves cities, or arrives at an emergency room, the new clinician starts from scratch, with no view of earlier diagnoses, treatments, and test results.
+
 # Continuum Health
 
 **A patient-controlled medical-record catalogue and consent-coordination prototype.**
+
+
 
 Continuum Health is designed to help patients organise references to medical records scattered across healthcare providers, review access requests, and grant or revoke document-specific permissions. It distinguishes records stored by the platform from records that remain with an external source.
 
