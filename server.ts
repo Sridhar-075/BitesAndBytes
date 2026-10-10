@@ -36,7 +36,3 @@ if (!process.env.VERCEL) {
     console.log(`Server running on port ${PORT}`);
   });
 }
-
-  console.error('Failed to start server:');
-  process.exit(1);
-;
