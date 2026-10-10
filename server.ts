@@ -37,6 +37,6 @@ if (!process.env.VERCEL) {
   });
 }
 
-  console.error('Failed to start server:', err);
+  console.error('Failed to start server:');
   process.exit(1);
-});
+;
