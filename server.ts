@@ -1,4 +1,3 @@
-
 import express from 'express';
 import path from 'path';
 import dotenv from 'dotenv';
@@ -11,6 +10,7 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// API routes
 app.use('/api/v1', apiRouter);
 
 app.get('/api/health', (_req, res) => {
@@ -21,17 +21,20 @@ app.get('/api/health', (_req, res) => {
   });
 });
 
-// Vercel serves files in public/ separately.
-// This fallback supports frontend routes.
+// Serve the built frontend, including JS, CSS, and images.
+app.use(express.static(path.resolve(process.cwd(), 'public')));
+
+// Frontend fallback for client-side routes.
 app.get('*', (_req, res) => {
   res.sendFile(path.resolve(process.cwd(), 'public', 'index.html'));
 });
 
 export default app;
 
-// Run the local server outside Vercel.
+// Start a local/Render server, but not when imported by Vercel.
 if (!process.env.VERCEL) {
   const PORT = Number(process.env.PORT || 3000);
+
   app.listen(PORT, '0.0.0.0', () => {
     console.log(`Server running on port ${PORT}`);
   });
